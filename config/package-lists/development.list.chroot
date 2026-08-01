@@ -4,11 +4,7 @@ vim-gtk3
 git
 cmake
 make
+g++
 universal-ctags
 cscope
-mypy
-flake8
-isort
-python3-yapf
-python3-autopep8
 texlive
