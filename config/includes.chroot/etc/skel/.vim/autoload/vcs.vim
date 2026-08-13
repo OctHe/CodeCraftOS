@@ -12,6 +12,7 @@ function! vcs#Fugitive(plugin_dir)
     return
   endif
 
+  nnoremap <silent> <Leader>gb :Git blame<CR>
   nnoremap <silent> <Leader>gd :Git diff<CR><C-W>L
   nnoremap <silent> <Leader>gs :Git status<CR>
 

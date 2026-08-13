@@ -25,7 +25,7 @@ vmap < <gv
 vmap > >gv
 
 " Show mappings
-nnoremap <silent> <Leader>m :verbose map
+nnoremap <silent> <Leader>hm :verbose map
 
 " }}}1
 
@@ -33,7 +33,7 @@ nnoremap <silent> <Leader>m :verbose map
 let s:vim_plug = expand('~/.vim/autoload/plug.vim')
 if !filereadable(s:vim_plug)
   call system('curl -fLo'.s:vim_plug.
-        \ ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+        \ '--create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
 
   if v:shell_error != 0
     echo "curl plug.vim from raw.githubusercontent.com failed. Try git clone.\n"
@@ -59,20 +59,22 @@ Plug 'tpope/vim-surround'
 " vim-commentary does not support nest comment. Disable it by default
 Plug 'tpope/vim-commentary', {'on': []}
 " Pairs of key mapping
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 " Change variants of a word at once
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 " Use vim-dirvish instead.
 Plug 'tpope/vim-vinegar', {'on': []}
-" Show buffer options
-Plug 'tpope/vim-sleuth'
+" Automatically shiftwidth and expandtab
+" Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sensible'
+" Run Shell commands in vim commandline
 Plug 'tpope/vim-eunuch'
 " Auto save session
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-endwise'
-" speeddating: Use <c-a>/<c-x> to increment datas and times
+" speeddating: Use <c-a>/<c-x> to increment/decrement datas and times
 Plug 'tpope/vim-speeddating'
 
 " Enhanced star keymapping. Avoid jumping to next
@@ -83,12 +85,15 @@ Plug 'vim-scripts/DrawIt'
 Plug 'vim-scripts/YankRing.vim'
 autocmd User plugin_config call navigator#YankRing(s:plugin_dir)
  
+" vim-plug: Register vim-plug as a plugin to get the help doc.
+Plug 'junegunn/vim-plug'
 " Use the latest fzf instead of the system-wide fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" vim-plug: Register vim-plug as a plugin to get the help doc.
-Plug 'junegunn/vim-plug'
+autocmd User plugin_config call navigator#FZF(s:plugin_dir)
+" Easy align with a delimiter
 Plug 'junegunn/vim-easy-align'
+autocmd User plugin_config call lint#EasyAlign(s:plugin_dir)
 " goyo.vim and limelight.vim improves text experience
 Plug 'junegunn/goyo.vim'
 autocmd User plugin_config call view#Goyo(s:plugin_dir)
@@ -104,13 +109,6 @@ autocmd User plugin_config call lint#Vista(s:plugin_dir)
 Plug 'liuchengxu/vim-which-key'
 autocmd User plugin_config call view#Whichkey(s:plugin_dir)
 
-Plug 'Yggdroot/indentLine'
-" LeaderF: Asynchronous fuzzy finder with popup window
-if  has('python3')
-  Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'}
-  autocmd User plugin_config call navigator#LeaderF(s:plugin_dir)
-endif
-
 Plug 'mhinz/vim-signify'
 " Grep the results into a quickfix.
 Plug 'mhinz/vim-grepper'
@@ -120,7 +118,9 @@ Plug 'mhinz/vim-startify'
 Plug 'itchyny/vim-cursorword'
 Plug 'itchyny/lightline.vim'
 
-Plug 'terryma/vim-multiple-cursors'
+" Start multicursor with <C-N>, It has some bugs.
+Plug 'terryma/vim-multiple-cursors', {'on': []}
+" Expand and shrink region with '+' and '_', respectively
 Plug 'terryma/vim-expand-region'
 
 if has('python3')
@@ -128,7 +128,7 @@ if has('python3')
   " vim-snippets: snippet database
   Plug 'honza/vim-snippets'
   Plug 'SirVer/ultisnips'
-  autocmd User plugin_config call completor#UltiSnips(s:plugin_dir)
+  autocmd User plugin_config call autocompletor#UltiSnips(s:plugin_dir)
 
   Plug 'puremourning/vimspector'
   autocmd User plugin_config call runner#Vimspector(s:plugin_dir)
@@ -142,7 +142,7 @@ if v:versionlong >= 9010016 && has('python3') && executable('cmake')
   " In openSUSE with
   "   sudo zypper install cmake make g++ python3-deval
   Plug 'ycm-core/YouCompleteMe', {'do': './install.py --clangd-completer'}
-  autocmd User plugin_config call completor#YCM(s:plugin_dir)
+  autocmd User plugin_config call autocompletor#YCM(s:plugin_dir)
 elseif has('python3')
   Plug 'maralla/completor.vim'
 else
@@ -154,7 +154,8 @@ Plug 'tomtom/tcomment_vim'
 Plug 'voldikss/vim-floaterm'
 autocmd User plugin_config call runner#Floaterm(s:plugin_dir)
 
-" vim-tmux-navigator. Use the <C-h/j/k/l> keymapping
+" vim-tmux-navigator. Only use the <C-h/j/k/l> keymapping in the current
+" version
 Plug 'christoomey/vim-tmux-navigator'
 
 " Sneak: Jump with 2 chars.
@@ -167,6 +168,7 @@ Plug 'justinmk/vim-dirvish'
 Plug 'luochen1990/rainbow'
 autocmd User plugin_config call view#Rainbow(s:plugin_dir)
 
+" Highlight a unique character in the line
 Plug 'unblevable/quick-scope'
 
 Plug 'mbbill/undotree'
@@ -186,15 +188,16 @@ Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'wellle/context.vim'
 
+" Enhanced %
 Plug 'andymass/vim-matchup'
 
 Plug 'lervag/vimtex'
 autocmd User plugin_config call runner#vimtex(s:plugin_dir)
 
-" vim-signature: Manage marks with column
+" vim-signature: Manage marks with signcolumn
 Plug 'kshenoy/vim-signature'
 
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
 call plug#end()
@@ -207,6 +210,7 @@ try
 catch
   " Builtin colorscheme
   colorscheme desert
+  highlight ColorColumn ctermbg=darkgrey guibg=lightgrey
 endtry
 " }}}1
 
@@ -234,6 +238,9 @@ set fileencodings=utf-8,gb18030,latin1
 set foldmethod=indent
 set foldcolumn=4
 set foldlevelstart=5
+
+set cursorline
+set cursorcolumn
 
 set colorcolumn=81
 

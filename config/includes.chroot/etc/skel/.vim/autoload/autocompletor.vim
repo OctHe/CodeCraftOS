@@ -7,7 +7,7 @@
 "
 " =====================================================================
 
-function! completor#UltiSnips(plugin_dir)
+function! autocompletor#UltiSnips(plugin_dir)
 
   if empty(globpath(a:plugin_dir, 'ultisnips/plugin/UltiSnips.vim'))
     return
@@ -24,7 +24,7 @@ function! completor#UltiSnips(plugin_dir)
 
 endfunction
 
-function! completor#YCM(plugin_dir)
+function! autocompletor#YCM(plugin_dir)
 
   if empty(globpath(a:plugin_dir, 'YouCompleteMe/plugin/youcompleteme.vim'))
     return

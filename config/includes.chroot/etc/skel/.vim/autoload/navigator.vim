@@ -29,27 +29,35 @@ function! navigator#Sneak(plugin_dir)
 
 endfunction
 
+function! navigator#FZF(plugin_dir)
+  if empty(globpath(a:plugin_dir, 'fzf.vim/plugin/fzf.vim'))
+    return
+  endif
+
+  nnoremap <Leader>fb :Buffer<CR>
+  nnoremap <Leader>fc :Colors<CR>
+  nnoremap <Leader>ff :File<CR>
+  nnoremap <Leader>fi :Gfiles<CR>
+  nnoremap <Leader>fh :History<CR>
+  nnoremap <Leader>ft :Tags<CR>
+  nnoremap <Leader>fw :Windows<CR>
+
+  vnoremap <Leader>fb :Buffer<CR>
+  vnoremap <Leader>fc :Colors<CR>
+  vnoremap <Leader>ff :File<CR>
+  vnoremap <Leader>fi :Gfiles<CR>
+  vnoremap <Leader>fh :History<CR>
+  vnoremap <Leader>ft :Tags<CR>
+  vnoremap <Leader>fw :Windows<CR>
+
+endfunction
+
 function! navigator#Undotree(plugin_dir)
   if empty(globpath(a:plugin_dir, 'undotree/plugin/undotree.vim'))
     return
   endif
 
   nnoremap <Leader>u :UndotreeToggle<CR>
-
-endfunction
-
-function! navigator#LeaderF(plugin_dir)
-
-  if empty(globpath(a:plugin_dir, 'LeaderF/plugin/leaderf.vim'))
-    return
-  endif
-
-  let g:Lf_WindowPosition = 'popup'
-  let g:Lf_WildIgnore = {'dir': ['.git', '.svn', '.hg'], 'file': ['*~']}
-  let g:Lf_ShortcutF = '<leader>ff'
-  let g:Lf_ShortcutB = '<leader>fb'
-
-  noremap <Leader>fr :Leaderf rg<CR>
 
 endfunction
 

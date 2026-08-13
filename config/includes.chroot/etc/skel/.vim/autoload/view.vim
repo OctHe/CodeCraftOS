@@ -34,25 +34,37 @@ function! view#Whichkey(plugin_dir)
   let g:which_key_map = {}
   let g:which_key_map.f = {
         \ 'name': '+find',
+        \ 'b': 'buffer',
+        \ 'c': 'color',
+        \ 'f': 'file',
+        \ 'g': 'Grepper',
+        \ 'h': 'history',
+        \ 'i': 'git files',
+        \ 't': 'tags',
+        \ 'w': 'windows',
         \ }
   let g:which_key_map.g = {
         \ 'name': '+git',
+        \ 'b': 'blame',
         \ 'd': 'diff',
+        \ 's': 'status',
         \ }
   let g:which_key_map.h = {
-        \ 'name': '+hunk',
-        \ 'p': 'preview the hunk',
-        \ 's': 'stage the hunk',
-        \ 'u': 'undo the hunk',
+        \ 'name': '+help',
+        \ 'm': 'mapping',
         \ }
-  let g:which_key_map.s = {
-        \ 'name': 'symbol',
+  let g:which_key_map.m = {
+        \ 'name': '+multiple cursor',
+        \ 'a': 'select all words',
+        \ 'c': 'start a word',
         \ }
   let g:which_key_map.t = {
         \ 'name': '+terminal',
-        \ }
-  let g:which_key_map.u = {
-        \ 'name': 'undo tree',
+        \ 'N': 'new term',
+        \ 'n': 'next term',
+        \ 'k': 'kill term',
+        \ 'p': 'previous term',
+        \ 't': 'toggle term',
         \ }
   let g:which_key_map.w = {
         \ 'name': '+writing',
@@ -65,6 +77,9 @@ function! view#Whichkey(plugin_dir)
   vnoremap <silent> <Leader> :<c-u>WhichKeyVisual '<Leader>'<CR>
   nnoremap <silent> <LocalLeader> :<c-u>WhichKey '<LocalLeader>'<CR>
   vnoremap <silent> <LocalLeader> :<c-u>WhichKeyVisual '<LocalLeader>'<CR>
+
+  nnoremap <silent> g :<c-u>WhichKey 'g'<CR>
+  vnoremap <silent> g :<c-u>WhichKeyVisual 'g'<CR>
 
 endfunction
 

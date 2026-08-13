@@ -20,6 +20,20 @@ function! lint#Vista(plugin_dir)
 
 endfunction
 
+function! lint#EasyAlign(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'vim-easy-align/plugin/easy_align.vim'))
+    return
+  endif
+
+  " Start interactive EasyAlign in visual mode (e.g. vipga)
+  vmap ga <Plug>(EasyAlign)
+
+  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+  nmap ga <Plug>(EasyAlign)
+
+endfunction
+
 function! lint#ALE(plugin_dir)
 
   if empty(globpath(a:plugin_dir, 'ale/plugin/ale.vim'))
