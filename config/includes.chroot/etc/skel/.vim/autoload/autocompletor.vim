@@ -7,6 +7,19 @@
 "
 " =====================================================================
 
+function! autocompletor#VisualMulti(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'vim-visual-multi/plugin/visual-multi.vim'))
+    return
+  endif
+
+  " Replace the default <C-N> since it comflicts with YankRing
+  let g:VM_maps = {}
+  let g:VM_maps['Find Under'] = '<Leader>m' " Replace <C-N>
+  let g:VM_maps['Find Subword Under'] = '<Leader>m' " Replace visual <C-N>
+
+endfunction
+
 function! autocompletor#UltiSnips(plugin_dir)
 
   if empty(globpath(a:plugin_dir, 'ultisnips/plugin/UltiSnips.vim'))

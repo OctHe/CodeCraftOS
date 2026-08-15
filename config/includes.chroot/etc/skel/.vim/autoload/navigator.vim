@@ -36,16 +36,16 @@ function! navigator#FZF(plugin_dir)
 
   nnoremap <Leader>fb :Buffer<CR>
   nnoremap <Leader>fc :Colors<CR>
-  nnoremap <Leader>ff :File<CR>
-  nnoremap <Leader>fi :Gfiles<CR>
+  nnoremap <Leader>ff :Files<CR>
+  nnoremap <Leader>fi :GFiles<CR>
   nnoremap <Leader>fh :History<CR>
   nnoremap <Leader>ft :Tags<CR>
   nnoremap <Leader>fw :Windows<CR>
 
   vnoremap <Leader>fb :Buffer<CR>
   vnoremap <Leader>fc :Colors<CR>
-  vnoremap <Leader>ff :File<CR>
-  vnoremap <Leader>fi :Gfiles<CR>
+  vnoremap <Leader>ff :Files<CR>
+  vnoremap <Leader>fi :GFiles<CR>
   vnoremap <Leader>fh :History<CR>
   vnoremap <Leader>ft :Tags<CR>
   vnoremap <Leader>fw :Windows<CR>

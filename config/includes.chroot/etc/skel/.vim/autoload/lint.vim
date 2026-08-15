@@ -15,8 +15,7 @@ function! lint#Vista(plugin_dir)
 
   let g:vista_sidebar_width = 50
 
-  " s means symbol
-  nnoremap <silent> <Leader>s :Vista!!<CR>
+  nnoremap <silent> <Leader>T :Vista!!<CR>
 
 endfunction
 

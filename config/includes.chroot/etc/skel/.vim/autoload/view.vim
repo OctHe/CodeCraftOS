@@ -12,7 +12,7 @@ function! view#Goyo(plugin_dir)
     return
   endif
 
-  nnoremap <Leader>wg :Goyo<CR>
+  nnoremap <Leader>eg :Goyo<CR>
 
 endfunction
 
@@ -21,7 +21,7 @@ function! view#Limelight(plugin_dir)
     return
   endif
 
-  nnoremap <Leader>wl :Limelight!!<CR>
+  nnoremap <Leader>el :Limelight!!<CR>
 
 endfunction
 
@@ -66,8 +66,8 @@ function! view#Whichkey(plugin_dir)
         \ 'p': 'previous term',
         \ 't': 'toggle term',
         \ }
-  let g:which_key_map.w = {
-        \ 'name': '+writing',
+  let g:which_key_map.e = {
+        \ 'name': '+edit',
         \ 'g': 'goyo',
         \ 'l': 'limelight',
         \ }
@@ -77,9 +77,6 @@ function! view#Whichkey(plugin_dir)
   vnoremap <silent> <Leader> :<c-u>WhichKeyVisual '<Leader>'<CR>
   nnoremap <silent> <LocalLeader> :<c-u>WhichKey '<LocalLeader>'<CR>
   vnoremap <silent> <LocalLeader> :<c-u>WhichKeyVisual '<LocalLeader>'<CR>
-
-  nnoremap <silent> g :<c-u>WhichKey 'g'<CR>
-  vnoremap <silent> g :<c-u>WhichKeyVisual 'g'<CR>
 
 endfunction
 

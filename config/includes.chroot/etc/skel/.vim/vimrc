@@ -1,5 +1,5 @@
 
-" The default vim config. Make the vim work like an IDE.
+" Make the vim work like an IDE.
 " Author: OctHe
 " Copyright (C)
 "
@@ -79,7 +79,6 @@ Plug 'tpope/vim-speeddating'
 
 " Enhanced star keymapping. Avoid jumping to next
 Plug 'vim-scripts/star-search'
-Plug 'vim-scripts/ZoomWin'
 Plug 'vim-scripts/DrawIt'
 " Use <C-N>/<C-P> to select different yanks after pasting
 Plug 'vim-scripts/YankRing.vim'
@@ -118,10 +117,14 @@ Plug 'mhinz/vim-startify'
 Plug 'itchyny/vim-cursorword'
 Plug 'itchyny/lightline.vim'
 
-" Start multicursor with <C-N>, It has some bugs.
+" Start multicursor mode. Replace it with vim-visual-multi since this is not
+" maintained
 Plug 'terryma/vim-multiple-cursors', {'on': []}
 " Expand and shrink region with '+' and '_', respectively
 Plug 'terryma/vim-expand-region'
+
+Plug 'mg979/vim-visual-multi'
+autocmd User plugin_config call autocompletor#VisualMulti(s:plugin_dir)
 
 if has('python3')
   " Ultisnips: snippets engine that uses snippet database
@@ -197,7 +200,8 @@ autocmd User plugin_config call runner#vimtex(s:plugin_dir)
 " vim-signature: Manage marks with signcolumn
 Plug 'kshenoy/vim-signature'
 
-" Plug 'morhetz/gruvbox'
+" GUI colorscheme
+Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
 call plug#end()
@@ -246,6 +250,26 @@ set colorcolumn=81
 
 syntax enable                  " Enable syntax-related features. Without this, some VimTeX features may not work
 " }}}1
+
+" Functions {{{1
+nnoremap <Leader>z :call TabZoomIn()<cr>
+function! TabZoomIn()
+  let s:this_tab = tabpagenr()
+  let s:last_tab = tabpagenr('$')
+  " Zoom in when the this tab has more than one window
+  if tabpagewinnr(s:this_tab, '$') > 1
+    tab split
+  elseif s:last_tab > 1
+    if s:this_tab == s:last_tab
+    " When this is the last tab, close the tab
+      tabclose
+    else
+      " When this is not the last tab, close and jump to the previous tab
+      tabclose | tabprevious
+    endif
+  endif
+endfunction
+" }
 
 " Commands {{{1
 augroup EnhancedHelp
