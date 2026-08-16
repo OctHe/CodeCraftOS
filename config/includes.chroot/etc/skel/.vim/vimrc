@@ -157,7 +157,8 @@ else
   Plug 'ervandew/supertab'
 endif
 
-Plug 'tomtom/tcomment_vim'
+" Replace it with Nerdcommenter, since this uses g as the leader.
+Plug 'tomtom/tcomment_vim', {'on': []}
 
 Plug 'voldikss/vim-floaterm'
 autocmd User plugin_config call runner#Floaterm(s:plugin_dir)
