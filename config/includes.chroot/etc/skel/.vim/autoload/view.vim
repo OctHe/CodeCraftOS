@@ -7,24 +7,6 @@
 "
 " =====================================================================
 
-function! view#Goyo(plugin_dir)
-  if empty(globpath(a:plugin_dir, 'goyo.vim/plugin/goyo.vim'))
-    return
-  endif
-
-  nnoremap <Leader>eg :Goyo<CR>
-
-endfunction
-
-function! view#Limelight(plugin_dir)
-  if empty(globpath(a:plugin_dir, 'limelight.vim/plugin/limelight.vim'))
-    return
-  endif
-
-  nnoremap <Leader>el :Limelight!!<CR>
-
-endfunction
-
 function! view#IndentGuides(plugin_dir)
   if empty(globpath(a:plugin_dir, 'vim-indent-guides/plugin/indent_guides.vim'))
     return
@@ -35,6 +17,17 @@ function! view#IndentGuides(plugin_dir)
 
 endfunction
 
+function! view#Rainbow(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'rainbow/plugin/rainbow_main.vim'))
+    return
+  endif
+  " This variable must be defined to use rainbow.
+  " Set to 0 to enable it later via :RainbowToggle
+  let g:rainbow_active = 1
+
+endfunction
+
 function! view#Whichkey(plugin_dir)
 
   if empty(globpath(a:plugin_dir, 'vim-which-key/plugin/which_key.vim'))
@@ -42,6 +35,9 @@ function! view#Whichkey(plugin_dir)
   endif
 
   let g:which_key_map = {}
+  let g:which_key_map.c = {
+        \ 'name': '+comment',
+        \ }
   let g:which_key_map.d = {
         \ 'name': '+drawit',
         \ 'i': 'start',
@@ -73,7 +69,7 @@ function! view#Whichkey(plugin_dir)
         \ 'a': 'select all words',
         \ 'c': 'start a word',
         \ }
-  let g:which_key_map.t = {
+  let g:which_key_map.T = {
         \ 'name': '+terminal',
         \ 'N': 'new term',
         \ 'n': 'next term',
@@ -81,10 +77,11 @@ function! view#Whichkey(plugin_dir)
         \ 'p': 'previous term',
         \ 't': 'toggle term',
         \ }
-  let g:which_key_map.e = {
-        \ 'name': '+edit',
+  let g:which_key_map.w = {
+        \ 'name': '+writing',
         \ 'g': 'goyo',
         \ 'l': 'limelight',
+        \ 'p': 'Pencil',
         \ }
   call which_key#register('<Space>', "g:which_key_map")
 
@@ -95,15 +92,5 @@ function! view#Whichkey(plugin_dir)
 
 endfunction
 
-function! view#Rainbow(plugin_dir)
-
-  if empty(globpath(a:plugin_dir, 'rainbow/plugin/rainbow_main.vim'))
-    return
-  endif
-  " This variable must be defined to use rainbow.
-  " Set to 0 to enable it later via :RainbowToggle
-  let g:rainbow_active = 1
-
-endfunction
 
 " vim: set sw=2 sts=2 et fdm=marker:

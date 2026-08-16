@@ -35,7 +35,7 @@ function! navigator#Nerdtree(plugin_dir)
           \ | endif
   augroup END
 
-  nnoremap <silent> <Leader>T :NERDTreeToggle<CR>
+  nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
 
 endfunction
 

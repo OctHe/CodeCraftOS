@@ -78,7 +78,9 @@ autocmd User plugin_config call autocompletor#Nerdcommenter(s:plugin_dir)
 Plug 'preservim/vim-indent-guides'
 autocmd User plugin_config call view#IndentGuides(s:plugin_dir)
 Plug 'preservim/vim-pencil'
-Plug 'preservim/vimux'
+autocmd User plugin_config call writer#Pencil(s:plugin_dir)
+" Coordination with tmux. Disable it unless install tmux
+Plug 'preservim/vimux', {'on': []}
 
 " Enhanced star keymapping. Avoid jumping to next
 Plug 'vim-scripts/star-search'
@@ -98,9 +100,9 @@ Plug 'junegunn/vim-easy-align'
 autocmd User plugin_config call lint#EasyAlign(s:plugin_dir)
 " goyo.vim and limelight.vim improves text experience
 Plug 'junegunn/goyo.vim'
-autocmd User plugin_config call view#Goyo(s:plugin_dir)
+autocmd User plugin_config call writer#Goyo(s:plugin_dir)
 Plug 'junegunn/limelight.vim'
-autocmd User plugin_config call view#Limelight(s:plugin_dir)
+autocmd User plugin_config call writer#Limelight(s:plugin_dir)
 " Display contents in register
 Plug 'junegunn/vim-peekaboo'
 " Colorscheme
