@@ -22,9 +22,21 @@ function! view#Rainbow(plugin_dir)
   if empty(globpath(a:plugin_dir, 'rainbow/plugin/rainbow_main.vim'))
     return
   endif
+
   " This variable must be defined to use rainbow.
   " Set to 0 to enable it later via :RainbowToggle
   let g:rainbow_active = 1
+
+endfunction
+
+function! view#Airline(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'vim-airline/plugin/airline.vim'))
+    return
+  endif
+
+  let g:airline#extensions#tabline#enabled = 1        " Enhanced tabline
+  let g:airline#extensions#tabline#buffer_nr_show = 1 " Show buffer number
 
 endfunction
 
@@ -64,12 +76,15 @@ function! view#Whichkey(plugin_dir)
         \ 'name': '+help',
         \ 'm': 'mapping',
         \ }
+  let g:which_key_map.i= {
+        \ 'name': '+indent',
+        \ }
   let g:which_key_map.m = {
         \ 'name': '+multiple cursor',
         \ 'a': 'select all words',
         \ 'c': 'start a word',
         \ }
-  let g:which_key_map.T = {
+  let g:which_key_map.t = {
         \ 'name': '+terminal',
         \ 'N': 'new term',
         \ 'n': 'next term',

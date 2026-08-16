@@ -120,7 +120,11 @@ autocmd User plugin_config call navigator#Grepper(s:plugin_dir)
 Plug 'mhinz/vim-startify'
 
 Plug 'itchyny/vim-cursorword'
-Plug 'itchyny/lightline.vim'
+" LX status line. It does not manage tabline. Replace it by vim-airline
+Plug 'itchyny/lightline.vim', {'on': []}
+
+Plug 'vim-airline/vim-airline'
+autocmd User plugin_config call view#Airline(s:plugin_dir)
 
 " Expand and shrink region with '+' and '_', respectively
 Plug 'terryma/vim-expand-region'

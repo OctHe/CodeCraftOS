@@ -13,11 +13,11 @@ function! runner#Floaterm(plugin_dir)
     return
   endif
 
-  nmap <Leader>TN :FloatermNew<CR>
-  nmap <Leader>Tn :FloatermNext<CR>
-  nmap <Leader>Tk :FloatermKill<CR>
-  nmap <Leader>Tp :FloatermPrev<CR>
-  nmap <Leader>Tt :FloatermToggle<CR>
+  nmap <Leader>tN :FloatermNew<CR>
+  nmap <Leader>tn :FloatermNext<CR>
+  nmap <Leader>tk :FloatermKill<CR>
+  nmap <Leader>tp :FloatermPrev<CR>
+  nmap <Leader>tt :FloatermToggle<CR>
 
 endfunction
 
