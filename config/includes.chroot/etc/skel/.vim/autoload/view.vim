@@ -32,6 +32,11 @@ function! view#Whichkey(plugin_dir)
   endif
 
   let g:which_key_map = {}
+  let g:which_key_map.d = {
+        \ 'name': '+drawit',
+        \ 'i': 'start',
+        \ 's': 'stop',
+        \ }
   let g:which_key_map.f = {
         \ 'name': '+find',
         \ 'b': 'buffer',

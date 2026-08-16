@@ -21,6 +21,16 @@ function! runner#Floaterm(plugin_dir)
 
 endfunction
 
+function! runner#Obsession(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'vim-obsession/plugin/session.vim'))
+    return
+  endif
+
+  noremap <Leader>s :Obsession<CR>
+
+endfunction
+
 " Debugger with DAP
 function! runner#Vimspector(plugin_dir)
 

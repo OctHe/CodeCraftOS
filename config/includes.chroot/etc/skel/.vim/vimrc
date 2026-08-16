@@ -33,7 +33,7 @@ nnoremap <silent> <Leader>hm :verbose map
 let s:vim_plug = expand('~/.vim/autoload/plug.vim')
 if !filereadable(s:vim_plug)
   call system('curl -fLo'.s:vim_plug.
-        \ '--create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+        \ ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
 
   if v:shell_error != 0
     echo "curl plug.vim from raw.githubusercontent.com failed. Try git clone.\n"
@@ -50,32 +50,32 @@ endif
 let s:plugin_dir = expand('~/.local/share/vim/plugins/')
 call plug#begin(s:plugin_dir)
 
-" Here are all tpope's plugins that I'm interested. Those that have better
-" alternatives have been disabled.
-" fugitive: Provide common git options (diff, status, add, commit, etc)
+" vim-fugitive: Provide common git options (diff, status, add, commit, etc)
 Plug 'tpope/vim-fugitive'
 autocmd User plugin_config call vcs#Fugitive(s:plugin_dir)
 Plug 'tpope/vim-surround'
-" vim-commentary does not support nest comment. Disable it by default
-Plug 'tpope/vim-commentary', {'on': []}
-" Pairs of key mapping
-" Plug 'tpope/vim-unimpaired'
-" Change variants of a word at once
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-repeat'
-" Use vim-dirvish instead.
-Plug 'tpope/vim-vinegar', {'on': []}
-" Automatically shiftwidth and expandtab
-" Plug 'tpope/vim-sleuth'
-" Plug 'tpope/vim-sensible'
-" Run Shell commands in vim commandline
-Plug 'tpope/vim-eunuch'
 " Auto save session
 Plug 'tpope/vim-obsession'
+autocmd User plugin_config call runner#Obsession(s:plugin_dir)
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+" Change variants of a word at once
+Plug 'tpope/vim-abolish'
 " speeddating: Use <c-a>/<c-x> to increment/decrement datas and times
 Plug 'tpope/vim-speeddating'
+" vim-commentary does not support nest comment. Disable it by default
+Plug 'tpope/vim-commentary', {'on': []}
+" Async maker and runner. Replace it with ALE and AsyncRun
+Plug 'tpope/vim-dispatch', {'on': []}
+" Use vim-dirvish instead. vinegar renames file by type R.
+Plug 'tpope/vim-vinegar', {'on': []}
+" Automatically shiftwidth and expandtab
+Plug 'tpope/vim-sleuth', {'on': []}
+Plug 'tpope/vim-sensible', {'on': []}
+" Run Shell commands in vim commandline. Replace it with floaterm
+Plug 'tpope/vim-eunuch', {'on': []}
+" Pairs of key mapping
+Plug 'tpope/vim-unimpaired', {'on': []}
 
 " Enhanced star keymapping. Avoid jumping to next
 Plug 'vim-scripts/star-search'
@@ -117,12 +117,12 @@ Plug 'mhinz/vim-startify'
 Plug 'itchyny/vim-cursorword'
 Plug 'itchyny/lightline.vim'
 
-" Start multicursor mode. Replace it with vim-visual-multi since this is not
-" maintained
-Plug 'terryma/vim-multiple-cursors', {'on': []}
 " Expand and shrink region with '+' and '_', respectively
 Plug 'terryma/vim-expand-region'
 
+Plug 'psliwka/vim-smoothie'
+
+" Start multicursor mode.
 Plug 'mg979/vim-visual-multi'
 autocmd User plugin_config call autocompletor#VisualMulti(s:plugin_dir)
 
@@ -164,7 +164,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " Sneak: Jump with 2 chars.
 Plug 'justinmk/vim-sneak'
 autocmd User plugin_config call navigator#Sneak(s:plugin_dir)
-" Path navigator
+" Path navigator. vim-dirvish only operates files with Shdo, which is
+" different from vim-vinegar
 Plug 'justinmk/vim-dirvish'
 
 " rainbow: Rainbow brackets
@@ -252,8 +253,7 @@ syntax enable                  " Enable syntax-related features. Without this, s
 " }}}1
 
 " Functions {{{1
-nnoremap <Leader>z :call TabZoomIn()<cr>
-function! TabZoomIn()
+function! s:TabZoomIn()
   let s:this_tab = tabpagenr()
   let s:last_tab = tabpagenr('$')
   " Zoom in when the this tab has more than one window
@@ -269,6 +269,8 @@ function! TabZoomIn()
     endif
   endif
 endfunction
+command! ZoomIn call s:TabZoomIn()
+nnoremap <silent> <Leader>z :ZoomIn<CR>
 " }
 
 " Commands {{{1
