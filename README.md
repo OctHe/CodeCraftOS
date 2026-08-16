@@ -1,7 +1,6 @@
 # Codecraft
 
-A personal Debian distribution based on live-build.
-This README illustrate the build process to customize a Debian ISO based on Debian Trixie.
+A personal Debian system based on live-build.
 
 ## Preinstallation
 
@@ -48,3 +47,8 @@ Use the aliyun mirror as the example:
     # Remove all files, or rebuild the project will fail
     sudo rm -rf cache
     sudo rm -rf config/*
+
+## Limitation
+
+- The live system uses bash, while the installed system uses fish by default.
+
