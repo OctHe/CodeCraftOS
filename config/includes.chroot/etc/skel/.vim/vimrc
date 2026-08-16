@@ -54,28 +54,31 @@ call plug#begin(s:plugin_dir)
 Plug 'tpope/vim-fugitive'
 autocmd User plugin_config call vcs#Fugitive(s:plugin_dir)
 Plug 'tpope/vim-surround'
+" Pairs of key mapping
+Plug 'tpope/vim-unimpaired'
+" Change variants of a word at once
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-endwise'
+" Run Shell commands in vim commandline
+Plug 'tpope/vim-eunuch'
 " Auto save session
 Plug 'tpope/vim-obsession'
 autocmd User plugin_config call runner#Obsession(s:plugin_dir)
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
-" Change variants of a word at once
-Plug 'tpope/vim-abolish'
 " speeddating: Use <c-a>/<c-x> to increment/decrement datas and times
 Plug 'tpope/vim-speeddating'
-" vim-commentary does not support nest comment. Disable it by default
-Plug 'tpope/vim-commentary', {'on': []}
-" Async maker and runner. Replace it with ALE and AsyncRun
-Plug 'tpope/vim-dispatch', {'on': []}
-" Use vim-dirvish instead. vinegar renames file by type R.
-Plug 'tpope/vim-vinegar', {'on': []}
-" Automatically shiftwidth and expandtab
-Plug 'tpope/vim-sleuth', {'on': []}
-Plug 'tpope/vim-sensible', {'on': []}
-" Run Shell commands in vim commandline. Replace it with floaterm
-Plug 'tpope/vim-eunuch', {'on': []}
-" Pairs of key mapping
-Plug 'tpope/vim-unimpaired', {'on': []}
+
+" NERDTree: File explorer.
+Plug 'preservim/nerdtree'
+autocmd User plugin_config call navigator#Nerdtree(s:plugin_dir)
+" List tags. Vista is a better replacement
+Plug 'preservim/tagbar', {'on': []}
+Plug 'preservim/nerdcommenter'
+autocmd User plugin_config call autocompletor#Nerdcommenter(s:plugin_dir)
+Plug 'preservim/vim-indent-guides'
+autocmd User plugin_config call view#IndentGuides(s:plugin_dir)
+Plug 'preservim/vim-pencil'
+Plug 'preservim/vimux'
 
 " Enhanced star keymapping. Avoid jumping to next
 Plug 'vim-scripts/star-search'

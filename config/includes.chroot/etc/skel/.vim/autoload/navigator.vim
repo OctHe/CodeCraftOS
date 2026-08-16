@@ -7,6 +7,38 @@
 "
 " =====================================================================
 
+function! navigator#Nerdtree(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'nerdtree/plugin/NERD_tree.vim'))
+    return
+  endif
+
+  let NERTTreeCaseSensitiveSort = 1
+  let NERDTreeWinSize = 35
+
+  augroup NERDTree
+    au!
+
+    " Close vim if the only window left open is a NERDTree
+    autocmd BufEnter *
+          \ if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()
+          \ |   quit
+          \ | endif
+
+    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+    autocmd BufEnter *
+          \ if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1
+          \ |   let buf=bufnr('%')
+          \ |   buffer#
+          \ |   execute "normal! \<C-W>w"
+          \ |   execute 'buffer'.buf
+          \ | endif
+  augroup END
+
+  nnoremap <silent> <Leader>T :NERDTreeToggle<CR>
+
+endfunction
+
 function! navigator#Sneak(plugin_dir)
 
   if empty(globpath(a:plugin_dir, 'vim-sneak/plugin/sneak.vim'))

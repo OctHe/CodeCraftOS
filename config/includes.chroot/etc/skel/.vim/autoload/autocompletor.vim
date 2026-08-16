@@ -7,6 +7,17 @@
 "
 " =====================================================================
 
+function! autocompletor#Nerdcommenter(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'nerdcommenter/plugin/nerdcommenter.vim'))
+    return
+  endif
+
+  let g:NERDSpaceDelims = 1
+  let g:NERDRemoveExtraSpaces = 1
+
+endfunction
+
 function! autocompletor#VisualMulti(plugin_dir)
 
   if empty(globpath(a:plugin_dir, 'vim-visual-multi/plugin/visual-multi.vim'))
