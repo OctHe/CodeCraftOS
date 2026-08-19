@@ -31,6 +31,17 @@ function! runner#Obsession(plugin_dir)
 
 endfunction
 
+function! runner#DrawIt(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'DrawIt/plugin/DrawItPlugin.vim'))
+    return
+  endif
+
+  noremap <Leader>ps <Plug>SaveWinPosn
+  noremap <Leader>pr <Plug>RestoreWinPosn
+
+endfunction
+
 " Debugger with DAP
 function! runner#Vimspector(plugin_dir)
 

@@ -79,10 +79,10 @@ function! view#Whichkey(plugin_dir)
   let g:which_key_map.i= {
         \ 'name': '+indent',
         \ }
-  let g:which_key_map.m = {
-        \ 'name': '+multiple cursor',
-        \ 'a': 'select all words',
-        \ 'c': 'start a word',
+  let g:which_key_map.p = {
+        \ 'name': '+position',
+        \ 'r': 'restore cursor position',
+        \ 's': 'save cursor position',
         \ }
   let g:which_key_map.t = {
         \ 'name': '+terminal',
