@@ -48,7 +48,3 @@ Use the aliyun mirror as the example:
     sudo rm -rf cache
     sudo rm -rf config/*
 
-## Limitation
-
-- The live system uses bash, while the installed system uses fish by default.
-
