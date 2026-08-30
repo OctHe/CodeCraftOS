@@ -1,6 +1,7 @@
-# Codecraft
+# CodeCraftOS
 
-A personal Debian system based on live-build.
+A custom Debian system based on live-build.
+This project does not provide a Debian live ISO, but it can build a ISO.
 
 ## Preinstallation
 
@@ -10,12 +11,11 @@ Install *live-build* in debian
 
 ## Configuration
 
-Create the project
+Clone the project with
 
-    mkdir codecraft
-    cd codecraft
+    git clone https://github.com/OctHe/CodeCraftOS
 
-Config the project
+Config it with
 
     lb config \
         --distribution trixie \
@@ -42,9 +42,17 @@ Use the aliyun mirror as the example:
 
 ## Build
 
+Generate the ISO requires root permission
+
     sudo lb build
-    lb clean
-    # Remove all files, or rebuild the project will fail
+
+The output is a \*.iso file named as *live-image-amd64.hybrid.iso* in the current directory.
+
+
+## Rebuild
+
+Remove all files, or rebuild the project will fail
+
+    sudo lb clean
     sudo rm -rf cache
-    sudo rm -rf config/*
 
