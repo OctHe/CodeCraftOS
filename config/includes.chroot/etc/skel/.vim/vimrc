@@ -214,6 +214,9 @@ autocmd User plugin_config call runner#vimtex(s:plugin_dir)
 " vim-signature: Manage marks with signcolumn
 Plug 'kshenoy/vim-signature'
 
+Plug 'madox2/vim-ai'
+autocmd User plugin_config call runner#AI(s:plugin_dir)
+
 " GUI colorscheme
 Plug 'morhetz/gruvbox'
 

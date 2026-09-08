@@ -53,6 +53,33 @@ function! runner#Vimspector(plugin_dir)
 
 endfunction
 
+function! runner#AI(plugin_dir)
+
+  if empty(globpath(a:plugin_dir, 'vim-ai/plugin/vim-ai.vim'))
+    return
+  endif
+
+  let g:vim_ai_complete = {
+  \  "options": {
+  \    "model": "deepseek-v4-flash",
+  \    "endpoint_url": "https://api.deepseek.com/chat/completions",
+  \  },
+  \}
+  let g:vim_ai_edit = {
+  \  "options": {
+  \    "model": "deepseek-v4-flash",
+  \    "endpoint_url": "https://api.deepseek.com/chat/completions",
+  \  },
+  \}
+  let g:vim_ai_chat = {
+  \  "options": {
+  \    "model": "deepseek-v4-flash",
+  \    "endpoint_url": "https://api.deepseek.com/chat/completions",
+  \  },
+  \}
+
+endfunction
+
 " vimtex: latex plugin for vim. It relies on texlive
 "   sudo apt install texlive-full
 " The backward search and forward search requires xdotool according to the
