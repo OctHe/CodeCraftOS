@@ -2,9 +2,23 @@ curl
 fish
 vim-gtk3
 git
+
+# C/C++
 cmake
 make
 g++
 universal-ctags
 cscope
+
+# Debian
+build-essential
+zlib1g-dev
+
+# Latex
 texlive
+
+# Ruby
+ruby-full
+
+# nodejs
+npm
